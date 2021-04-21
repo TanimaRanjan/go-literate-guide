@@ -21,8 +21,11 @@ func main() {
 	cans, remainder := floatParts(1.26)
 	fmt.Println(cans, remainder)
 	amount, err := paintNeeded(4.2, -3.0)
-	fmt.Println(err)
-	fmt.Printf("%.2f liters needed \n", amount)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("%.2f liters needed \n", amount)
+	}
 }
 
 func repeatLine(line string, times int) {
