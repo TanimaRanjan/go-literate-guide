@@ -20,6 +20,9 @@ func main() {
 	fmt.Printf("%.2f \n", paintMe(5.2, 3.3))
 	cans, remainder := floatParts(1.26)
 	fmt.Println(cans, remainder)
+	amount, err := paintNeeded(4.2, -3.0)
+	fmt.Println(err)
+	fmt.Printf("%.2f liters needed \n", amount)
 }
 
 func repeatLine(line string, times int) {
@@ -33,4 +36,15 @@ func floatParts(number float64) (integerPart int, fractionPart float64) {
 	return int(wholeNumber), number - wholeNumber
 }
 
+func paintNeeded(width float64, height float64) (float64, error) {
+	if width < 0 {
+		return 0, fmt.Errorf("a width of %0.2f is invalid", width)
+	}
+	if height < 0 { 
+		return 0, fmt.Errorf("a height of %0.2f is invalid", height)
+	}
+	area := width * height
+	return area / 10.0, nil
+
+}
 
