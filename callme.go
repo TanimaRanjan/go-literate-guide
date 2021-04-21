@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 var metersPerLiter float64
 
@@ -15,6 +18,8 @@ func main() {
 	fmt.Printf("%.2f \n", paintMe(4.2, 3.0))
 	fmt.Printf("%.2f \n", paintMe(5.2, 3.0))
 	fmt.Printf("%.2f \n", paintMe(5.2, 3.3))
+	cans, remainder := floatParts(1.26)
+	fmt.Println(cans, remainder)
 }
 
 func repeatLine(line string, times int) {
@@ -23,5 +28,9 @@ func repeatLine(line string, times int) {
 	}
 }
 
+func floatParts(number float64) (integerPart int, fractionPart float64) {
+	wholeNumber := math.Floor(number)
+	return int(wholeNumber), number - wholeNumber
+}
 
 
