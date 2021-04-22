@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"errors"
 )
 
 var metersPerLiter float64
@@ -11,7 +12,13 @@ func paintMe(width float64, height float64) float64 {
 	area := width * height
 	return area / metersPerLiter
 }
-
+ 
+func divide(dividend float64, divisor float64) (float64, error) { 
+	if(divisor == 0.0) {
+		return 0, errors.New("cant divide by 0")
+	} 
+	return dividend / divisor, nil 
+}
 func main() {
 	metersPerLiter = 10.0
 	repeatLine("hello", 3)
@@ -25,6 +32,13 @@ func main() {
 		fmt.Println(err)
 	} else {
 		fmt.Printf("%.2f liters needed \n", amount)
+	}
+
+	quotient, err := divide(5.6, 2.0)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("%.2f\n", quotient)
 	}
 }
 
